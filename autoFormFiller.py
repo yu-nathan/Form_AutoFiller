@@ -1,5 +1,7 @@
 import mechanize
 import argparse
+import formInfo as fI
+import re
 
 def main():
     # setting up command line argument parser
@@ -16,10 +18,10 @@ def main():
     br.set_header("User-agent", header)
     response = br.open(url)
     br.form = br.forms()[0]
-    br.form.set_value("fml", name="test")
+    #print(br.form.controls[1].__dict__)
     #br.submit()
-    #for control in br.form.controls:
-        #print("type=%s, name=%s value=%s" % (control.type, control.name, br.form[control.name]))
+    for control in br.form.controls:
+       print("name: %s, type: %s" % (control.name, control.type))
 
 if __name__ == "__main__":
     main()
